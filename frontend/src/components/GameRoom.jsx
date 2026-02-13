@@ -8,7 +8,10 @@ import TransferHostModal from './TransferHostModal.jsx';
 import LoadingSpinner from './LoadingSpinner.jsx';
 import './GameRoom.scss';
 
-const socket = io('http://localhost:5000', {
+// Socket URL lấy từ env, fallback localhost cho dev
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
+
+const socket = io(SOCKET_URL, {
   autoConnect: false,
 });
 

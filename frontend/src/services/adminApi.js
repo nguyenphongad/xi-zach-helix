@@ -1,9 +1,13 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api';
+// Ưu tiên lấy base URL từ env, fallback localhost cho môi trường dev
+const ADMIN_API_BASE_URL =
+  import.meta.env.VITE_ADMIN_API_BASE_URL ||
+  import.meta.env.VITE_API_BASE_URL ||
+  'http://localhost:5000/api';
 
 const adminApi = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: ADMIN_API_BASE_URL,
   timeout: 10000,
 });
 
