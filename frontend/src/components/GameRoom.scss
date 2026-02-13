@@ -1,0 +1,520 @@
+.game-room {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e3c72 0%, #000 55%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.room-info h3 {
+  margin: 0;
+}
+
+.room-info span {
+  font-size: 14px;
+  color: #bdc3c7;
+}
+
+.game-room-header .actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.game-room-header .actions button {
+  margin-left: 0;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.admin-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.game-room-header .primary {
+  background: #27ae60;
+  color: white;
+}
+
+.game-room-header .secondary {
+  background: #e74c3c;
+  color: white;
+}
+
+.table-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.dealing-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.dealing-box {
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.table-circle {
+  position: relative;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 55%);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+}
+
+.dealer-slot {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.dealer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 2px solid #ffd700;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffd700;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.dealer-icon {
+  font-size: 18px;
+}
+
+.dealer {
+  text-align: center;
+}
+
+.dealer-cards {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card {
+  width: 50px;
+  height: 70px;
+  background: white;
+  color: #2c3e50;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  transition: all 0.3s;
+
+  &.hidden {
+    background: #34495e;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  &.dealing {
+    opacity: 0;
+    transform: scale(0.4) translateY(0);
+    animation: dealFromCenter 0.5s ease-out forwards;
+  }
+}
+
+@keyframes dealFromCenter {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.player-seat {
+  position: absolute;
+  width: 120px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.3s;
+
+  &.current-turn {
+    background: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    border: 2px solid #ffd700;
+  }
+
+  &.host-selected {
+    box-shadow: 0 0 24px rgba(155, 89, 182, 0.7);
+    border: 2px solid #9b59b6;
+    animation: hostPulse 1s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes hostPulse {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-2px);
+  }
+}
+
+/* 6 ghế người chơi quanh bàn – cùng chiều kim đồng hồ
+   0: 12 giờ (nhà cái), 1: ~2 giờ, 2: ~4 giờ,
+   3: ~6 giờ, 4: ~8 giờ, 5: ~10 giờ, 6: ~11 giờ */
+.player-seat.position-0 {
+  top: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.player-seat.position-1 {
+  top: 26%;
+  right: 10%;
+}
+
+.player-seat.position-2 {
+  top: 55%;
+  right: 5%;
+}
+
+.player-seat.position-3 {
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.player-seat.position-4 {
+  top: 55%;
+  left: 5%;
+}
+
+.player-seat.position-5 {
+  top: 26%;
+  left: 10%;
+}
+
+.player-seat.position-6 {
+  top: 16%;
+  left: 22%;
+}
+
+.host-icon {
+  color: #ffd700;
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+.player-balance {
+  font-size: 10px;
+  color: #f39c12;
+  margin-bottom: 4px;
+}
+
+.no-cards {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.dealer-score {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #f39c12;
+  font-weight: 600;
+}
+
+.player-seat.empty {
+  opacity: 0.4;
+}
+
+.player-name {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.player-cards {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.player-status {
+  font-size: 11px;
+  color: #ecf0f1;
+}
+.status-ready {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.status-not-ready {
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.self-player {
+  border: 2px solid #00cec9;
+}
+
+.host-show-btn {
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(155, 89, 182, 0.2);
+  color: #dcd6f7;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background: rgba(155, 89, 182, 0.35);
+    transform: translateY(-1px);
+  }
+}
+
+.player-timer {
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.player-timer-circle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+}
+
+.player-timer-circle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.player-timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.game-actions {
+  padding: 15px 20px 25px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.game-actions .secondary {
+  padding: 10px 30px;
+  border-radius: 25px;
+  border: none;
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.donate-modal {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 400px;
+  color: #2c3e50;
+}
+
+.donate-modal .modal-header {
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  border-radius: 20px 20px 0 0;
+}
+
+.donate-modal .modal-content {
+  padding: 20px 25px 10px;
+}
+
+.donate-modal input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dfe6e9;
+}
+
+.donate-modal .modal-footer {
+  padding: 15px 25px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.donate-modal .cancel-btn,
+.donate-modal .create-btn {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.donate-modal .cancel-btn {
+  background: #ecf0f1;
+}
+
+.donate-modal .create-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.notice-modal {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 420px;
+  color: #2c3e50;
+  overflow: hidden;
+}
+
+.notice-modal .modal-header {
+  padding: 18px 22px;
+  background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+  color: #fff;
+}
+
+.notice-modal .modal-content {
+  padding: 20px 22px;
+}
+
+.notice-modal .modal-footer {
+  padding: 12px 22px 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.notice-modal .confirm-btn {
+  padding: 8px 18px;
+  border-radius: 10px;
+  border: none;
+  background: #0984e3;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.result-table {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.result-header,
+.result-row {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 0.8fr 1fr;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.result-header {
+  font-weight: 700;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.result-row span:nth-child(2) {
+  font-family: monospace;
+}
+
+/* Timer với circle progress */
+.timer-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.timer-circle {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-bg {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.timer-progress {
+  stroke: #ffd700;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}

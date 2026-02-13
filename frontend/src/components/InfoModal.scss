@@ -1,0 +1,126 @@
+.info-modal {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  padding: 20px;
+  border-bottom: 2px solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.warning-section {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.warning-section i {
+  font-size: 48px;
+  color: #f39c12;
+  margin-bottom: 10px;
+}
+
+.warning-section h4 {
+  color: #e74c3c;
+  font-size: 22px;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.info-list li {
+  padding: 12px;
+  margin-bottom: 10px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  font-size: 16px;
+  border-left: 4px solid #667eea;
+}
+
+.game-rules {
+  background: #e8f4f8;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 4px solid #3498db;
+}
+
+.game-rules h4 {
+  color: #2c3e50;
+  margin-bottom: 15px;
+}
+
+.game-rules p {
+  margin: 8px 0;
+  color: #34495e;
+  line-height: 1.6;
+}
+
+.modal-footer {
+  padding: 20px;
+  border-top: 2px solid #f0f0f0;
+  text-align: center;
+}
+
+.confirm-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.confirm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+

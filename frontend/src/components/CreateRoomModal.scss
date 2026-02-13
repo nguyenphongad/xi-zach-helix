@@ -1,0 +1,86 @@
+.create-room-modal {
+  background: white;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  animation: slideIn 0.3s ease;
+}
+
+.create-room-modal .modal-header {
+  background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+  color: white;
+  border-radius: 20px 20px 0 0;
+}
+
+.create-room-modal .modal-content {
+  padding: 20px 25px 10px;
+}
+
+.create-room-modal .form-group {
+  margin-bottom: 15px;
+}
+
+.create-room-modal label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.create-room-modal input,
+.create-room-modal select,
+.create-room-modal .readonly-field {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dfe6e9;
+  font-size: 15px;
+}
+
+.readonly-field {
+  background: #ecf0f1;
+}
+
+.create-room-modal .modal-footer {
+  padding: 15px 25px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.cancel-btn,
+.create-btn {
+  border-radius: 10px;
+  padding: 10px 18px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cancel-btn {
+  background: #ecf0f1;
+  color: #7f8c8d;
+}
+
+.create-btn {
+  background: linear-gradient(135deg, #36d1dc 0%, #5b86e5 100%);
+  color: white;
+}
+
+.create-btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
